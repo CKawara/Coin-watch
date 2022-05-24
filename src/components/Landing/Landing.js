@@ -10,8 +10,7 @@ const useStyles = makeStyles({
         height: 350,
         display: 'flex',
         flexDirection:'column',
-        paddingTop:20,
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         textAlign: 'center',
         fontWeight: 'bolder'
     }

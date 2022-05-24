@@ -12,6 +12,11 @@ const useStyles = makeStyles({
         display:'flex',
         // alignItems:'center',
     },
+    oneCoin:{
+        color:'white',
+        cursor: 'pointer',
+        textDecoration:'none'
+    }
 })
 
 const DisplayCoins = () => {
@@ -31,11 +36,13 @@ const DisplayCoins = () => {
     const items = coins.map((coin)=>{
         let profit = coin.price_change_percentage_24h >0
         return(
-            <Link to={`/coins/${coin.id}`}>
+            <Link to={`/coins/${coin.id}`} className={classes.oneCoin}>
                 <img src={coin.image} alt={coin.name} height='70' />
                 <div>
-                    {coin.symbol }
-                    <span>
+                    {coin.symbol.toUpperCase()}
+                    <span 
+                        style={{color: profit? '#39D004' : 'red'}}
+                    >
                         {profit &&'+'}{coin.price_change_percentage_24h.toFixed(2)}%
                     </span>
                     <div>
