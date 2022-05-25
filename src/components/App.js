@@ -22,7 +22,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path={'/'}  component={Homepage} exact/>
-        <Route path={"/coins/:id"} component={Singlecoin}/>
+        <Route path={"/coins/:id"} component={Singlecoin} />
         <Route path={"/news"} component={News}/>
       </Switch>
     </div>

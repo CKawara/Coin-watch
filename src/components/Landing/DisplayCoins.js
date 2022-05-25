@@ -31,6 +31,7 @@ const DisplayCoins = () => {
     useEffect(() => {
       fetchCoins()
     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency])
     
     const items = coins.map((coin)=>{
