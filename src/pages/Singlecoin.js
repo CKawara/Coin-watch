@@ -1,4 +1,4 @@
-import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
+import { Button, LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -6,6 +6,8 @@ import { CurrencyState } from '../components/Context';
 import { SingleCoin } from '../config/Apis';
 import ReactHtmlParser from 'react-html-parser'
 import CoinChart from '../components/CoinChart';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../Firebase';
 
 const useStyles = makeStyles((theme)=>({
   container:{
@@ -35,7 +37,7 @@ const useStyles = makeStyles((theme)=>({
 const Singlecoin = () => {
    const {id}= useParams();
    const [coin, setCoin] = useState()
-   const {currency, symbol} =  CurrencyState()
+   const {currency, symbol, user, starred, setAlert} =  CurrencyState()
 
    const fetchCoin = async()=>{
      const {data} = await axios.get(SingleCoin(id))
@@ -47,6 +49,29 @@ const Singlecoin = () => {
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [currency])
    const classes = useStyles()
+
+   const inStarredList = starred.includes(coin?.id)
+
+   const starCoin = async () => {
+     const coinRef = doc(db,'starred', user.uid)
+
+     try{
+       await setDoc(coinRef, 
+          {coins:starred?[...starred,coin.id]:[coin.id],}
+        )
+        setAlert({
+          open: true,
+          message:`${coin?.name} added to watchlist`,
+          type: 'success',
+        })
+     }catch(error){
+      setAlert({
+        open: true,
+        message: error.message,
+        type: 'error'
+    });
+     }
+   }
 
    if(!coin) return <LinearProgress style={{backgroundColor: '#ED602B'}}/>
 
@@ -73,6 +98,24 @@ const Singlecoin = () => {
           <Typography style={{fontWeight: 'bolder'}}>
             market cap: {symbol} {coin?.market_data.market_cap[currency.toLowerCase()].toString().slice(0, -6)}M
           </Typography>
+
+          {user && (
+            <button
+              style={{
+                width: '70%',
+                height: 30,
+                backgroundColor: '#ED602B',
+                color: 'black',
+                padding: 20,
+                // textAlign: 'center',
+                fontWeight:900,
+                fontSize: 'large'
+              }}
+              onClick={starCoin}
+             >
+              {inStarredList?'Remove from starred' : 'Star Coin'}
+            </button>
+          )}
         </div>       
       </div>
       {/* chart */}

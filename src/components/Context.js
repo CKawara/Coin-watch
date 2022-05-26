@@ -13,6 +13,7 @@ const Context = ({children}) => {
       message: '',
       type: 'success'
     })
+    const [starred, setStarred] = useState([])
 
     useEffect(()=>{
       onAuthStateChanged(auth, user =>{
@@ -26,7 +27,7 @@ const Context = ({children}) => {
         else if (currency === 'EUR')setSymbol('€')
     }, [currency])
   return (
-    <Currency.Provider value={{currency, symbol, setCurrency, alert, setAlert,user}}>
+    <Currency.Provider value={{currency, symbol, setCurrency, alert, setAlert,user,starred}}>
         {children}
     </Currency.Provider>
   )
