@@ -8,3 +8,10 @@
 span{
   color: #ED602B;
 }
+a{
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+    color: "#ED602B",
+}
