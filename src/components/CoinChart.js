@@ -1,11 +1,11 @@
 import { CircularProgress, createTheme, makeStyles, ThemeProvider } from '@material-ui/core'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { Chart, Line } from 'react-chartjs-2'
-import { CategoryScale } from 'chart.js'
+import {  Line } from 'react-chartjs-2'
 import { HistoricalChart } from '../config/Apis'
 import { CurrencyState } from './Context'
-Chart.register(CategoryScale);
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 const useStyles = makeStyles((theme)=>({
   container:{
