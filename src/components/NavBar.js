@@ -8,6 +8,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import AuthModal from './Authentication/AuthModal';
+import UserProfile from './Authentication/UserProfile';
 
 const useStyles = makeStyles((theme)=> ({
 
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme)=> ({
 const NavBar = () => {
     const [open, setOpen]=useState(false)
     const classes = useStyles()
-    const {currency, setCurrency } = CurrencyState()
+    const {currency, setCurrency, user } = CurrencyState()
     const history = useNavigate()
     const darkTheme = createTheme({
         palette:{
@@ -73,7 +74,7 @@ const NavBar = () => {
               <MenuItem value={'EUR'}>EUR</MenuItem>
             </Select>
             <Hidden xsDown>
-            <AuthModal/>
+            {user? <UserProfile /> : <AuthModal/>}
             </Hidden>
           </Toolbar>
         </Container>
@@ -99,7 +100,7 @@ const NavBar = () => {
               >News</NavLink>
             </ListItem>
             <ListItem>
-            <AuthModal/>
+            {user? <UserProfile /> : <AuthModal/>}
             </ListItem>
           </List>
         </SwipeableDrawer>
