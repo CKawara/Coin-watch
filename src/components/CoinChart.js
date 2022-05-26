@@ -5,6 +5,8 @@ import {  Line } from 'react-chartjs-2'
 import { HistoricalChart } from '../config/Apis'
 import { CurrencyState } from './Context'
 import { Chart, registerables } from 'chart.js';
+import { chartDays } from '../config/ChartDays'
+import ChartButton from './ChartButton'
 Chart.register(...registerables);
 
 const useStyles = makeStyles((theme)=>({
@@ -20,11 +22,17 @@ const useStyles = makeStyles((theme)=>({
       marginTop:0,
       paddingTop:0
     }
+  },
+  buttonContainer:{
+    display: 'flex',
+    marginTop:20,
+    justifyContent: 'space-around',
+    width:'100%'
   }
 }))
 const CoinChart = ({coin}) => {
   const [chartData, setChartData]=useState()
-  const[days, setDay] = useState(1)
+  const[days, setDays] = useState(1)
   const{currency} = CurrencyState()
 
   const fetchChartData = async()=>{
@@ -77,6 +85,17 @@ const classes = useStyles()
                   }
                 }}
               />
+              <div className={classes.buttonContainer}>
+                {
+                  chartDays.map((day)=>(
+                    <ChartButton
+                    key={day.value}
+                    handleClick={()=>setDays(day.value)}
+                    selected={day.value === days}
+                    >{day.label}</ChartButton>
+                  ))
+                }
+              </div>
             </>
         )
         }
