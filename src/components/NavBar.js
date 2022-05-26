@@ -1,7 +1,7 @@
 import { AppBar, Container, createTheme, MenuItem, Select, Toolbar, Typography , ThemeProvider, Hidden, IconButton, SwipeableDrawer, Divider} from '@material-ui/core'
 import React, { useState } from 'react'
 import { makeStyles } from "@material-ui/core";
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { CurrencyState } from './Context';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -31,6 +31,7 @@ const NavBar = () => {
     const [open, setOpen]=useState(false)
     const classes = useStyles()
     const {currency, setCurrency } = CurrencyState()
+    const history = useNavigate()
     const darkTheme = createTheme({
         palette:{
             primary:{
@@ -44,16 +45,20 @@ const NavBar = () => {
       <AppBar color='transparent'  position='static'>
         <Container >
           <Toolbar>
-            <Typography style={{marginRight: 'auto'}}>Coin<span>Watch</span></Typography> 
+            <Typography style={{marginRight: 'auto', cursor: 'pointer'}} 
+            onClick={()=>history('/')}>Coin<span>Watch</span></Typography> 
             <Hidden xsDown>
               <div className={classes.navlinks}>
-                <NavLink to="/" exact className={classes.link}>
+                <NavLink to="/" exact className={classes.link} 
+                style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
                   Home
                 </NavLink>
-                <NavLink to="/news" exact className={classes.link}>
+                <NavLink to="/news" exact className={classes.link} 
+                style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
                   News
                 </NavLink>
-                <NavLink to="/contact" exact className={classes.link}>
+                <NavLink to="/contact" exact className={classes.link} 
+                style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
                   Contact
                 </NavLink>
               </div>
@@ -84,13 +89,19 @@ const NavBar = () => {
           <Divider/>
           <List >
             <ListItem>
-              <NavLink to="/" exact className={classes.link}>Home</NavLink>
+              <NavLink to="/" exact className={classes.link} 
+              style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}
+              >Home</NavLink>
             </ListItem>
             <ListItem>
-              <NavLink to="/news" exact className={classes.link}>News</NavLink>
+              <NavLink to="/news" exact className={classes.link} s
+              tyle={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}
+              >News</NavLink>
             </ListItem>
             <ListItem>
-              <NavLink to="/contact" exact className={classes.link}>Contact</NavLink>
+              <NavLink to="/contact" exact className={classes.link} 
+              style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
+                Contact</NavLink>
             </ListItem>
           </List>
         </SwipeableDrawer>

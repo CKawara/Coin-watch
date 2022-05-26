@@ -69,9 +69,7 @@ const CoinsTable = () => {
                         ))}
                         </TableHead>
                         <TableBody>
-                            {
-
-                                // diplay 10 items per page according to page number
+                            { // diplay 10 items per page according to page number
                                 handleSearch().slice((page-1)*10, (page-1)*10+10)
                                     .map((row)=>{
                                     let profit = row.price_change_percentage_24h >0
