@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import AuthModal from './Authentication/AuthModal';
 
 const useStyles = makeStyles((theme)=> ({
 
@@ -57,10 +58,6 @@ const NavBar = () => {
                 style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
                   News
                 </NavLink>
-                <NavLink to="/contact" exact className={classes.link} 
-                style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
-                  Contact
-                </NavLink>
               </div>
             </Hidden>
             <Hidden smUp>
@@ -75,6 +72,9 @@ const NavBar = () => {
               <MenuItem value={'USD'} >USD</MenuItem>
               <MenuItem value={'EUR'}>EUR</MenuItem>
             </Select>
+            <Hidden xsDown>
+            <AuthModal/>
+            </Hidden>
           </Toolbar>
         </Container>
         <SwipeableDrawer open={open} 
@@ -99,9 +99,7 @@ const NavBar = () => {
               >News</NavLink>
             </ListItem>
             <ListItem>
-              <NavLink to="/contact" exact className={classes.link} 
-              style={({ isActive }) => ({ borderBottom: isActive ? "2px solid #ED602B" : " " })}>
-                Contact</NavLink>
+            <AuthModal/>
             </ListItem>
           </List>
         </SwipeableDrawer>

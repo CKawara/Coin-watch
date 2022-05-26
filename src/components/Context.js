@@ -5,6 +5,7 @@ const Currency = createContext()
 const Context = ({children}) => {
     const [currency, setCurrency] = useState("USD")
     const [symbol, setSymbol] = useState("$")
+    const [user, setUer] = useState(null)
 
     useEffect(()=>{
         if(currency === 'USD')setSymbol('$');
