@@ -22,7 +22,6 @@ const NewsCard = ({item}) => {
                     <Typography ><a style={{
                         color:'white',
                         fontWeight: '900',
-                        
                     }} href={item.url}>{item.title}</a></Typography>
                     <br/>
                     <Typography style={{color:'grey'}}>{item.desc}</Typography>

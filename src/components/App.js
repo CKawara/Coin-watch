@@ -5,6 +5,7 @@ import Homepage from '../pages/Homepage';
 import NavBar from './NavBar';
 import News from '../pages/News';
 import Singlecoin from '../pages/Singlecoin';
+import ContactUs from './ContactUs';
 
 const useStyles = makeStyles({
   App:{
@@ -25,6 +26,7 @@ function App() {
         <Route path={"/coins/:id"} element={<Singlecoin/>} />
         <Route path={"/news"} element={<News/>}/>
       </Routes>
+      <ContactUs/>
     </div>
     </BrowserRouter>
   );

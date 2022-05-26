@@ -1,4 +1,4 @@
-import { Container, Grid, LinearProgress, makeStyles, Typography } from '@material-ui/core'
+import { Container, Grid,  makeStyles, Typography } from '@material-ui/core'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import NewsCard from '../components/NewsCard'
@@ -9,7 +9,8 @@ const useStyles = makeStyles({
     textTransform:'uppercase',
     background:'rgba(0, 0, 0, 0.7)',
     fontWeight:900,
-    fontSize: 'xx-large'
+    fontSize: 'xx-large',
+    padding:10
   },
   image:{
     height:'60vh',
@@ -30,8 +31,6 @@ useEffect(()=>{
   fetchNews()
 }, [])
 
- if(!news) return <LinearProgress style={{backgroundColor: '#ED602B'}}/>
- console.log(news[1]);
   return (
     <Container>
         <div className={classes.image} style={{

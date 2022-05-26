@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { LinearProgress, makeStyles } from '@material-ui/core'
 import axios from 'axios'
 import React, { useState , useEffect} from 'react'
 import AliceCarousel from 'react-alice-carousel'
@@ -62,7 +62,8 @@ const DisplayCoins = () => {
             items: 4
         }
     }
-     
+    if(!coins) return <LinearProgress style={{backgroundColor: '#ED602B'}}/>
+
   return (
     <div className={classes.coins}>
         <AliceCarousel
