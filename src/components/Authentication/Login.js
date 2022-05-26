@@ -1,12 +1,21 @@
 import { Box, Button, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
+import { CurrencyState } from '../Context'
 
 const Login = ({handleClose}) => {
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
+    const{setAlert} = CurrencyState
 
     const handleSubmit =()=> {
-
+        if(!email || !password){
+            setAlert({
+                open:true,
+                message: 'Fill all the fields',
+                type: 'error',
+            })
+            return;
+        }
     }
 
   return (

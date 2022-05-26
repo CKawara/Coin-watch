@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import News from '../pages/News';
 import Singlecoin from '../pages/Singlecoin';
 import ContactUs from './ContactUs';
+import Alert from './Alert';
 
 const useStyles = makeStyles({
   App:{
@@ -28,6 +29,7 @@ function App() {
       </Routes>
       <ContactUs/>
     </div>
+    <Alert/>
     </BrowserRouter>
   );
 }
