@@ -1,4 +1,4 @@
-import { makeStyles, Typography } from '@material-ui/core';
+import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -44,8 +44,11 @@ const Singlecoin = () => {
 
    useEffect(()=>{
      fetchCoin()
-   }, [])
+   }, [currency])
    const classes = useStyles()
+
+   if(!coin) return <LinearProgress style={{backgroundColor: '#ED602B'}}/>
+
   return (
     <div className={classes.container}>
       <div className={classes.detail}>
@@ -61,7 +64,13 @@ const Singlecoin = () => {
         <Typography variant='subtitle1' className={classes.description}>
           {ReactHtmlParser(coin?.description.en.split('. ')[0])}
         </Typography>
-                
+        <div className={classes.description}>
+          <Typography style={{fontWeight: 'bolder'}}>Rank: {coin?.market_cap_rank}</Typography>
+          <Typography style={{fontWeight: 'bolder'}}>
+            Price: {symbol} {coin?.market_data.current_price[currency.toLowerCase()].toFixed(2)}
+          </Typography>
+          <Typography style={{fontWeight: 'bolder'}}>market cap: {symbol} {coin?.market_data.market_cap[currency.toLowerCase()].toString().slice(0, -6)}M</Typography>
+        </div>       
       </div>
       {/* chart */}
       <CoinDetail coin={coin}/>
