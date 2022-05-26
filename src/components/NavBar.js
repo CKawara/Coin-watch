@@ -1,7 +1,7 @@
 import { AppBar, Container, createTheme, MenuItem, Select, Toolbar, Typography , ThemeProvider} from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from "@material-ui/core";
-import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom"
 import { CurrencyState } from './Context';
 
 const useStyles = makeStyles((theme)=> ({
@@ -40,15 +40,15 @@ const NavBar = () => {
             <Toolbar>
                 <Typography >Coin<span>Watch</span></Typography> 
                 <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
+            <NavLink to="/" exact className={classes.link}>
               Home
-            </Link>
-            <Link to="/news" className={classes.link}>
+            </NavLink>
+            <NavLink to="/news" exact className={classes.link}>
               News
-            </Link>
-            <Link to="/contact" className={classes.link}>
+            </NavLink>
+            <NavLink to="/contact" exact className={classes.link}>
               Contact
-            </Link>
+            </NavLink>
           </div>
             <Select variant='outlined'
              style={{width: 100, height:40}}

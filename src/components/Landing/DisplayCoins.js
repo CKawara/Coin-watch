@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 import axios from 'axios'
 import React, { useState , useEffect} from 'react'
 import AliceCarousel from 'react-alice-carousel'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link } from 'react-router-dom'
 import { TrendingCoins } from '../../config/Apis'
 import { CurrencyState } from '../Context'
 

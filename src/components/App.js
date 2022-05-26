@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 import Homepage from '../pages/Homepage';
 import NavBar from './NavBar';
@@ -20,11 +20,11 @@ function App() {
     <BrowserRouter>
     <div className={classes.App}>
       <NavBar />
-      <Switch>
-        <Route path={'/'}  component={Homepage} exact/>
-        <Route path={"/coins/:id"} component={Singlecoin} />
-        <Route path={"/news"} component={News}/>
-      </Switch>
+      <Routes>
+        <Route path={'/'}  element={<Homepage/>} exact/>
+        <Route path={"/coins/:id"} element={<Singlecoin/>} />
+        <Route path={"/news"} element={<News/>}/>
+      </Routes>
     </div>
     </BrowserRouter>
   );

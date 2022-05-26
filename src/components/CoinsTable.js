@@ -2,7 +2,7 @@ import { Container, createTheme,  Table, TableBody, TableCell, TableContainer, T
 import { Pagination } from '@material-ui/lab'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CoinList } from '../config/Apis'
 import { CurrencyState } from './Context'
 
@@ -18,7 +18,7 @@ const CoinsTable = () => {
     const [coins, setCoins] = useState([])
     const[search, setSearch] = useState()
     const[page, setPage] = useState(1)
-    const history = useHistory()
+    const history = useNavigate()
     const {currency, symbol} =CurrencyState()
 
     const fetchCoins = async()=>{
@@ -77,7 +77,7 @@ const CoinsTable = () => {
                                     let profit = row.price_change_percentage_24h >0
                                     return(
                                         <TableRow 
-                                            onClick={()=> history.push(`/coins/${row.id}`)}
+                                            onClick={()=> history(`/coins/${row.id}`)}
                                             key={row.name}>
                                             <TableCell
                                                 component='th'
