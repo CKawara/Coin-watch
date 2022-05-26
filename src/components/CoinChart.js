@@ -64,8 +64,17 @@ const classes = useStyles()
                     return days === 1? time:date.toLocaleDateString()
                   }),
                   datasets:[{
-                    data: chartData.map((coin)=> coin[1])
-                  }]
+                    data: chartData.map((coin)=> coin[1]),
+                    label: `Price in ${currency}`,
+                    borderColor: '#ED602B'
+                  }],
+                }}
+                options ={{
+                  elements: {
+                    point:{
+                      radius:1,
+                    },
+                  }
                 }}
               />
             </>
