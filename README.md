@@ -9,7 +9,7 @@ It is built using React, material UI for styling,CoinGecko API for the coins  an
 4. Coin Details page, with prices and a chart.
 5. Add coins to Favorites After loggin in.
 
-## Deign
+## Design
 Find the design [here](https://www.figma.com/file/uixKCtl6niypOAnO7I8g70/Crypto-watch-react-app?node-id=8%3A101)
 
 ## Demo
@@ -25,7 +25,7 @@ npm install
 ```
 4. Run the app:
  ```bash
-npm install
+npm start
 ```
 
 ## Requirements
@@ -46,4 +46,4 @@ To use the site you'll need;
 - [Catherine Kawara](https://github.com/CKawara/)
 
 # License
-[MIT licence](https://github.com/CKawara/Cryptohut/blob/main/LICENSE)
+[MIT licence](https://github.com/CKawara/Coin-watch/blob/main/LICENSE)
