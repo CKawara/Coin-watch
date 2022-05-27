@@ -1,4 +1,4 @@
-import { Button, LinearProgress, makeStyles, Typography } from '@material-ui/core';
+import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -61,7 +61,7 @@ const Singlecoin = () => {
         )
         setAlert({
           open: true,
-          message:`${coin?.name} added to watchlist`,
+          message:`${coin?.name} added to Favorites`,
           type: 'success',
         })
      }catch(error){
@@ -73,9 +73,31 @@ const Singlecoin = () => {
      }
    }
 
+   const removeFromStarred = async () => {
+    const coinRef = doc(db,'starred', user.uid)
+
+    try{
+      await setDoc(coinRef, 
+         {coins:starred.filter((star)=> star !== coin.id)},
+         {merge: true}
+       )
+       setAlert({
+         open: true,
+         message:`${coin?.name} removed from Favorites`,
+         type: 'success',
+       })
+    }catch(error){
+     setAlert({
+       open: true,
+       message: error.message,
+       type: 'error'
+   });
+    }
+   }
+
    if(!coin) return <LinearProgress style={{backgroundColor: '#ED602B'}}/>
 
-  return (
+   return (
     <div className={classes.container}>
       <div className={classes.detail}>
         <img
@@ -103,18 +125,14 @@ const Singlecoin = () => {
             <button
               style={{
                 width: '70%',
-                height: 30,
                 backgroundColor: '#ED602B',
                 color: 'black',
-                padding: 20,
-                // textAlign: 'center',
+                padding: 10,
                 fontWeight:900,
                 fontSize: 'large'
               }}
-              onClick={starCoin}
-             >
-              {inStarredList?'Remove from starred' : 'Star Coin'}
-            </button>
+              onClick={inStarredList? removeFromStarred : starCoin}
+             >{inStarredList?'Remove from Favorites' : 'Add to Favorites'}</button>
           )}
         </div>       
       </div>

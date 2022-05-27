@@ -1,9 +1,7 @@
 import { Container, createTheme,  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider } from '@material-ui/core'
 import { Pagination } from '@material-ui/lab'
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CoinList } from '../config/Apis'
 import { CurrencyState } from './Context'
 
 
@@ -15,16 +13,11 @@ import { CurrencyState } from './Context'
 //     }
 // })
 const CoinsTable = () => {
-    const [coins, setCoins] = useState([])
     const[search, setSearch] = useState()
     const[page, setPage] = useState(1)
     const history = useNavigate()
-    const {currency, symbol} =CurrencyState()
+    const {currency, symbol,coins,fetchCoins} =CurrencyState()
 
-    const fetchCoins = async()=>{
-        const {data} = await axios.get(CoinList(currency))
-        setCoins(data)
-    }
     useEffect(() => {
       fetchCoins()
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -26,10 +26,14 @@ const useStyles = makeStyles({
   },
   starred:{
     flex:1,
+    padding:20,
     width:'100%',
     backgroundColor: '#333333',
     gap: 10,
     overflowY: 'scroll'
+  },
+  coin:{
+    margin:10
   }
 
 });
@@ -41,7 +45,7 @@ const UserProfile=()=> {
     right: false,
   });
 
-  const {user, setAlert} = CurrencyState()
+  const {user, setAlert, starred, coins} = CurrencyState()
 
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -87,7 +91,19 @@ const UserProfile=()=> {
                     {user.displayName || user.email}
                 </Typography>
                 <div className={classes.starred}>
-                    <Typography>My Coins</Typography>
+                    <h3>My Coins</h3>
+                    <hr/>
+                    {
+                        // eslint-disable-next-line array-callback-return
+                        coins.map((coin) => {
+                            if (starred.includes(coin.id))
+                            return (
+                                <div className={classes.coin}>
+                                    <Typography key={coin.id}>{coin.name}</Typography>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
                 <Button variant='contained'
                     onClick={logOut}
