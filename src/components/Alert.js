@@ -10,7 +10,6 @@ const Alert = () => {
       if (reason === 'clickaway') {
         return;
       }
-  
       setAlert({open: false});
     };
   return (
