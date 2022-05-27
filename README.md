@@ -38,6 +38,7 @@ To use the site you'll need;
 - [React](https://reactjs.org/) 
 - [Material UI](https://mui.com/) 
 - [Javascript](https://www.w3schools.com/js/)
+- [Firebase](https://firebase.google.com/)
 - [Rapid API](https://rapidapi.com/enayfls-ibksP3yFoax/api/crypto-news14/)
 - [CoinGecko API](https://www.coingecko.com/en/api/documentation)
 
